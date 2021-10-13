@@ -13,10 +13,6 @@ services:
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 
-env:
-  global:
-  - CODECOV_TOKEN=""
-
 # Отправлять уведомление на почту ivan150287@gmail.com если сборка упала
 notifications:
   email:
@@ -24,3 +20,9 @@ notifications:
     - ivan150287@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
+
+env:
+
+  global:
+
+  - CODECOV_TOKEN="7253f8a6-d720-4692-933e-f83da3d70ecd"
