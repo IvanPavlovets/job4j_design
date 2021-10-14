@@ -41,6 +41,7 @@ public class CinemaTest {
 
         assertEquals(cinema.find(session -> true)
                 .get(0), is(mySession));
+
     }
 
     @Ignore
