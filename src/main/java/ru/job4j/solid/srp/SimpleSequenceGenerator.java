@@ -14,7 +14,6 @@ public class SimpleSequenceGenerator implements SequenceGenerator {
         this.numberGenerator = numberGenerator;
     }
 
-
     /**
      * Генерирует последовательность.
      * Генерация последовательности отделена от генерации числа.

@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp;
+package ru.job4j.solid.srp.example3;
 
 import java.util.Date;
 import java.util.Map;
