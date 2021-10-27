@@ -11,13 +11,14 @@ public abstract class Transport {
     /**
      * Поле name необходимо для индефикации транспорта в хранилище.
      */
-    String name;
+    protected String name;
 
     /**
      * Легковой считается машина у которой размер равен 1,
      * а грузовой у которой размер > 1.
      */
-    int size;
+    protected int size;
+
 
     public String getName() {
         return name;

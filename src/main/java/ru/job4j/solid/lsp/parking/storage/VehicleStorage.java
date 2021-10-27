@@ -7,17 +7,18 @@ import ru.job4j.solid.lsp.parking.cars.Transport;
  * фактически имитация коллекции или хранилища из задания tracker.
  */
 public interface VehicleStorage {
+
     /**
      * Добавить транспортное средство на парковку.
      * @param car
-     * @return
+     * @return boolean припаркован/не припаркован.
      */
-    Transport park(Transport car);
+    boolean park(Transport car);
 
     /**
      * Убрать транспортное средство с парковки.
      * @param car
-     * @return
+     * @return boolean убран/не убран.
      */
     boolean remove(Transport car);
 
