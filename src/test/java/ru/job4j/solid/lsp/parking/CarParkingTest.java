@@ -1,6 +1,5 @@
 package ru.job4j.solid.lsp.parking;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import ru.job4j.solid.lsp.parking.cars.Car;
 import ru.job4j.solid.lsp.parking.cars.Truck;
@@ -13,7 +12,6 @@ public class CarParkingTest {
     /**
      * Проверяем добавление автомобиля на парковку.
      */
-    @Ignore
     @Test
     public void whenAddCarToParking() {
         CarParking parking = new CarParking(12, 6);
@@ -24,7 +22,6 @@ public class CarParkingTest {
     /**
      * Проверяем добавление грузовика на парковку.
      */
-    @Ignore
     @Test
     public void whenAddTruckToParking() {
         CarParking parking = new CarParking(12, 6);
@@ -34,31 +31,34 @@ public class CarParkingTest {
 
     /**
      * Проверяем удаление автомобиля с парковки.
+     * Смотрим что во внутренем массиве нет обьектов Car.
      */
-    @Ignore
     @Test
     public void whenRemoveCarFromParking() {
         CarParking parking = new CarParking(12, 6);
         Car car = new Car("Toyota corolla");
-        assertEquals(true, parking.remove(car));
+        parking.park(car);
+        parking.remove(car.getName());
+        assertEquals(null, parking.getCars()[0]);
     }
 
     /**
      * Проверяем удаление грузовика с парковки.
+     * Смотрим что во внутренем массиве нет обьектов Truck.
      */
-    @Ignore
     @Test
     public void whenRemoveTrackFromParking() {
         CarParking parking = new CarParking(12, 6);
         Truck truck = new Truck("KAMAZ", 3);
-        assertEquals(true, parking.remove(truck));
+        parking.park(truck);
+        parking.remove(truck.getName());
+        assertEquals(null, parking.getCars()[0]);
     }
 
     /**
      * Проверяем наличие проверки при задании неверного размера грузовика.
      */
-    @Ignore
-    @Test(expected = IllegalArgumentException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void whenWriteWrongArg() {
         Truck truck = new Truck("KAMAZ", 1);
     }
@@ -66,7 +66,6 @@ public class CarParkingTest {
     /**
      * Проверяем добавление грузовика на места легковых автомобилей.
      */
-    @Ignore
     @Test
     public void whenAddTruckToCarParking() {
         CarParking parking = new CarParking(12, 0);
@@ -79,7 +78,6 @@ public class CarParkingTest {
     /**
      * Проверяем переполнение парковки.
      */
-    @Ignore
     @Test
     public void whenNoParkingPlace() {
         CarParking parking = new CarParking(3, 0);

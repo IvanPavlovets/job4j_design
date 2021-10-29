@@ -20,6 +20,6 @@ public interface VehicleStorage {
      * @param car
      * @return boolean убран/не убран.
      */
-    boolean remove(Transport car);
+    boolean remove(String name);
 
 }

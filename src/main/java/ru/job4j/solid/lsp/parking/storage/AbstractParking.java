@@ -13,12 +13,18 @@ public abstract class AbstractParking implements VehicleStorage {
     protected int carPlaces;
     protected int truckPlaces;
     protected Transport[] cars;
-    protected int carIndex = 0;
-    protected int truckIndex = 0;
+    protected int index = 0;
 
     public AbstractParking(int carPlaces, int truckPlaces) {
+        if ((carPlaces < 0) || (truckPlaces < 0)) {
+            new IllegalArgumentException("Negative values for the parking spaces not allowed!");
+        }
         this.carPlaces = carPlaces;
         this.truckPlaces = truckPlaces;
         this.cars = new Transport[carPlaces + truckPlaces];
+    }
+
+    public Transport[] getCars() {
+        return cars;
     }
 }

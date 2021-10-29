@@ -9,9 +9,9 @@ public class Truck extends Transport {
 
     @Override
     public void setSize(int size) {
-        if (size > 1) {
-            this.size = size;
+        if (size < 2) {
+            throw new IllegalArgumentException("The size of the truck must be > 1!");
         }
-        new IllegalArgumentException("The size of the truck must be > 1!");
+        this.size = size;
     }
 }

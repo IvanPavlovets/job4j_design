@@ -19,6 +19,18 @@ public abstract class Transport {
      */
     protected int size;
 
+    /**
+     * Указывает на какой стоянки находиться автомобиль.
+     */
+    protected boolean isCarPlaces = false;
+
+    public boolean isCarPlaces() {
+        return isCarPlaces;
+    }
+
+    public void setCarPlaces(boolean carPlaces) {
+        isCarPlaces = carPlaces;
+    }
 
     public String getName() {
         return name;
