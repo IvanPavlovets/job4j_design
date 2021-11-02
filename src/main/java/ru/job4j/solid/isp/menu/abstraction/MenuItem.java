@@ -46,12 +46,14 @@ public class MenuItem extends MenuComponent {
      */
     @Override
     public void printMenu() {
-        System.out.print("  " + getName());
-        if (isVegetarian()) { // признак вегетарианского блюда
-            System.out.print("(v)");
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("%s %s", "  ", getName()));
+        if (isVegetarian()) {
+            builder.append("(v)");
         }
-        System.out.println(", " + getPrice());
-        System.out.println("     -- " + getDescription());
+        builder.append(String.format("%s %s", ", ", getPrice()));
+        builder.append(String.format("%s %s", "  -- ", getDescription()));
+        System.out.println(builder);
     }
 
     @Override

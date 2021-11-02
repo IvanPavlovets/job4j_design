@@ -27,7 +27,7 @@ public class MenuPrinter implements Printable {
         MenuComponent cafeMenu =
                 new MenuComposite("CAFE MENU", "Полдник");
         MenuComponent desertMenu = new MenuComposite("DESERT MENU", "десерт");
-        // добавляем листья
+
         pancakeHouseMenu.add(new MenuItem("Завтрак K&B", "Оладьи с яичнецой и тостами",
                 true, 2.99));
         pancakeHouseMenu.add(new MenuItem("Основной завтрак", "Оладьи с яичнецой и колбасой",
@@ -76,7 +76,7 @@ public class MenuPrinter implements Printable {
 
     public void printVegetarian() {
         Iterator iterator = allMenus.createIterator();
-        System.out.println("\nVEGETARIAN MENU\n----");
+        System.out.println(String.format("%s%s%s%s", "\n", "VEGETARIAN MENU", "\n", "----"));
         while (iterator.hasNext()) {
             MenuComponent menuComponent =
                     (MenuComponent) iterator.next();

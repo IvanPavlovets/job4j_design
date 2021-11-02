@@ -59,9 +59,10 @@ public class MenuComposite extends MenuComponent {
      */
     @Override
     public void printMenu() {
-        System.out.print("\n" + getName());
-        System.out.println(", " + getDescription());
-        System.out.println("---------------------");
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("%s%s%s%s", "\n", getName(), ", ", getDescription()));
+        builder.append("\n---------------------");
+        System.out.println(builder);
         Iterator iterator = menuComponents.iterator();
         while (iterator.hasNext()) {
             MenuComponent menuComponent = (MenuComponent) iterator.next();
