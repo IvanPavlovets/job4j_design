@@ -1,12 +1,14 @@
 package ru.job4j.solid.isp.menu.abstraction;
 
+import ru.job4j.solid.isp.menu.behavior.Action;
 import ru.job4j.solid.isp.menu.behavior.Menu;
 import ru.job4j.solid.isp.menu.behavior.MyIterator;
 import ru.job4j.solid.isp.menu.behavior.Printable;
 
-import java.util.Iterator;
 
 public abstract class MenuComponent implements Menu, Printable, MyIterator {
+
+    protected int key;
 
     /**
      * Методы для узлов дерева - экземпляры MenuComposite
@@ -24,6 +26,11 @@ public abstract class MenuComponent implements Menu, Printable, MyIterator {
     /**
      * Методы для листьев - экземпляры MenuItem
      */
+    public int getKey() {
+        throw new UnsupportedOperationException();
+    }
+
+
     public String getName() {
         throw new UnsupportedOperationException();
     }
@@ -37,6 +44,10 @@ public abstract class MenuComponent implements Menu, Printable, MyIterator {
     }
 
     public double getPrice() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Action getAction() {
         throw new UnsupportedOperationException();
     }
 

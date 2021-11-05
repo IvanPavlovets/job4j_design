@@ -11,28 +11,27 @@ import java.util.*;
  * отслеживания текущей позиции вверх-вниз по комбинационой
  * иерархии используються Stack.
  */
-public class CompositeIterator implements Iterator {
+public class CompositeIterator implements Iterator<MenuComponent> {
 
     /**
      * коллекция для хранения итераторов элементов MenuComposite
       */
-    Deque stack = new LinkedList();
+    private Deque<Iterator<MenuComponent>> stack = new LinkedList<>();
 
-    public CompositeIterator(Iterator iterator) {
+    public CompositeIterator(Iterator<MenuComponent> iterator) {
         stack.push(iterator);
     }
 
     /**
      * если стек не пуст читаем из стека верхний итератор
      * и проверяем есть ли в стеке следующий элемнт
-     * @return
      */
     @Override
     public boolean hasNext() {
         if (stack.isEmpty()) {
             return false;
         } else {
-            Iterator iterator = (Iterator) stack.peek();
+            Iterator<MenuComponent> iterator = stack.peek();
             if (!iterator.hasNext()) {
                 stack.pop();
                 return hasNext();
@@ -44,15 +43,17 @@ public class CompositeIterator implements Iterator {
 
     /**
      * Проверяет существует ли следующий элемнент
-     * если относиться к классу MenuComponent (комбинация)
+     * если относиться к классу MenuComposite (комбинация)
      * то вызываем итератор его коллекции
-     * @return
      */
     @Override
-    public Object next() {
+    public MenuComponent next() {
         if (hasNext()) {
-            Iterator iterator = (Iterator) stack.peek();
-            MenuComponent component = (MenuComponent) iterator.next();
+            Iterator<MenuComponent> iterator = stack.peek();
+            MenuComponent component = null;
+            if (iterator != null) {
+                component = iterator.next();
+            }
             if (component instanceof MenuComposite) {
                 stack.push(component.createIterator());
             }

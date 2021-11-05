@@ -1,24 +1,34 @@
 package ru.job4j.solid.isp.menu.abstraction;
 
+import ru.job4j.solid.isp.menu.behavior.Action;
 import ru.job4j.solid.isp.menu.iterators.NullIterator;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * Класс описывающий структуру листа (leaf) в дереве.
  * Лист конечный элемент в дереве (нет подменю).
  */
 public class MenuItem extends MenuComponent {
-    String name;
-    String description;
-    boolean vegetarian;
-    double price;
+    private String name;
+    private String description;
+    private boolean vegetarian;
+    private double price;
+    private Action action;
 
-    public MenuItem(String name, String description, boolean vegetarian, double price) {
+    public MenuItem(int key, String name, String description, boolean vegetarian, double price, Action action) {
+        this.key = key;
         this.name = name;
         this.description = description;
         this.vegetarian = vegetarian;
         this.price = price;
+        this.action = action;
+    }
+
+    @Override
+    public int getKey() {
+        return key;
     }
 
     @Override
@@ -47,7 +57,8 @@ public class MenuItem extends MenuComponent {
     @Override
     public void printMenu() {
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%s %s", "  ", getName()));
+        builder.append(String.format("%s %s", " ", getKey()));
+        builder.append(String.format("%s %s", ".", getName()));
         if (isVegetarian()) {
             builder.append("(v)");
         }
@@ -57,7 +68,43 @@ public class MenuItem extends MenuComponent {
     }
 
     @Override
-    public Iterator createIterator() {
+    public Action getAction() {
+        return action;
+    }
+
+    @Override
+    public MenuComponent getChild(int key) {
+        MenuComponent menuComponent = null;
+        if (key == this.getKey()) {
+            menuComponent = this;
+        }
+        return menuComponent;
+    }
+
+    @Override
+    public Iterator<MenuComponent> createIterator() {
         return new NullIterator();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MenuItem menuItem = (MenuItem) o;
+        return Objects.equals(description, menuItem.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

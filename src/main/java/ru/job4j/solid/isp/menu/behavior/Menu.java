@@ -8,5 +8,6 @@ public interface Menu {
      */
     void add(MenuComponent menuComponent);
     void remove(MenuComponent menuComponent);
+    MenuComponent getChild(int key);
 
 }
