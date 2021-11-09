@@ -75,7 +75,7 @@ public class MenuItem extends MenuComponent {
         return action;
     }
 
-    @Override// если ключ совпадает то возвращает обьект в котором нужны поля - childDescription
+    @Override
     public String getChildDescription(int key) {
         String rstDesc = null;
         if (key == this.getKey()) {
@@ -84,7 +84,7 @@ public class MenuItem extends MenuComponent {
         return rstDesc;
     }
 
-    @Override// если ключ совпадает то возвращает обьект в котором нужны поля - childDescription
+    @Override
     public Action getChildAction(int key) {
         Action rstAction = null;
         if (key == this.getKey()) {
