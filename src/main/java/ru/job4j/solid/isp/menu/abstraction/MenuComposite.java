@@ -1,5 +1,6 @@
 package ru.job4j.solid.isp.menu.abstraction;
 
+import ru.job4j.solid.isp.menu.behavior.Action;
 import ru.job4j.solid.isp.menu.iterators.CompositeIterator;
 
 import java.util.Iterator;
@@ -7,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class MenuComposite extends MenuComponent {
+public class MenuComposite<T> extends MenuComponent {
 
     /**
      * хранение обьектов типа MenuComponent
@@ -74,16 +75,30 @@ public class MenuComposite extends MenuComponent {
         }
     }
 
-    public MenuComponent getChild(int key) {
-        MenuComponent component = null;
+    @Override
+    public String getChildDescription(int key) {
+        String childDesc = null;
         Iterator<MenuComponent> iterator = menuComponents.iterator();
         while (iterator.hasNext()) {
             MenuComponent menuComponent = iterator.next();
-            if (menuComponent.getChild(key) != null) {
-                component = menuComponent.getChild(key);
+            if (menuComponent.getChildDescription(key) != null) {
+                childDesc = menuComponent.getChildDescription(key);
             }
         }
-        return component;
+        return childDesc;
+    }
+
+    @Override
+    public Action getChildAction(int key) {
+        Action childAction = null;
+        Iterator<MenuComponent> iterator = menuComponents.iterator();
+        while (iterator.hasNext()) {
+            MenuComponent menuComponent = iterator.next();
+            if (menuComponent.getChildDescription(key) != null) {
+                childAction = menuComponent.getChildAction(key);
+            }
+        }
+        return childAction;
     }
 
     /**

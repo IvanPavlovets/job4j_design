@@ -97,8 +97,8 @@ public class MenuPrinter implements Printable {
      * @param key int
      */
     public void dialog(int key) {
-        String arg1 = this.allMenus.getChild(key).getAction().someAction();
-        String arg2 = this.allMenus.getChild(key).getDescription();
+        String arg1 = this.allMenus.getChildAction(key).someAction();
+        String arg2 = this.allMenus.getChildDescription(key);
         System.out.println(String.format("%s %s", arg1, arg2));
     }
 

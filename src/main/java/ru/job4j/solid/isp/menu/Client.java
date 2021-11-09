@@ -1,6 +1,5 @@
 package ru.job4j.solid.isp.menu;
 
-
 import ru.job4j.solid.isp.menu.io.ConsoleInput;
 
 /**
@@ -19,5 +18,7 @@ public class Client {
 
         int key = Integer.valueOf(new ConsoleInput().ask("Выберите ключ заказа: "));
         printer.dialog(key);
+
+
     }
 }

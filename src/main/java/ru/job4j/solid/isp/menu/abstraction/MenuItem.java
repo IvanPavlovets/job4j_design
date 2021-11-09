@@ -3,8 +3,11 @@ package ru.job4j.solid.isp.menu.abstraction;
 import ru.job4j.solid.isp.menu.behavior.Action;
 import ru.job4j.solid.isp.menu.iterators.NullIterator;
 
+import javax.sql.rowset.Predicate;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * Класс описывающий структуру листа (leaf) в дереве.
@@ -72,13 +75,22 @@ public class MenuItem extends MenuComponent {
         return action;
     }
 
-    @Override
-    public MenuComponent getChild(int key) {
-        MenuComponent menuComponent = null;
+    @Override// если ключ совпадает то возвращает обьект в котором нужны поля - childDescription
+    public String getChildDescription(int key) {
+        String rstDesc = null;
         if (key == this.getKey()) {
-            menuComponent = this;
+            rstDesc = this.getDescription();
         }
-        return menuComponent;
+        return rstDesc;
+    }
+
+    @Override// если ключ совпадает то возвращает обьект в котором нужны поля - childDescription
+    public Action getChildAction(int key) {
+        Action rstAction = null;
+        if (key == this.getKey()) {
+            rstAction = this.getAction();
+        }
+        return rstAction;
     }
 
     @Override
