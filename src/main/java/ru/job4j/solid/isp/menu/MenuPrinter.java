@@ -1,7 +1,6 @@
 package ru.job4j.solid.isp.menu;
 
 import ru.job4j.solid.isp.menu.abstraction.Menu;
-
 import ru.job4j.solid.isp.menu.actions.AcceptAction;
 import ru.job4j.solid.isp.menu.behavior.Action;
 
