@@ -1,8 +1,8 @@
 package ru.job4j.solid.isp.menu.behavior;
 
 public interface Tree<T> extends Printable {
-    boolean add(int key, T parentData, T data, Action action);
-    String getData(T key);
+    boolean add(int number, T parentData, T data, Action action);
+    T getData(T key);
     Action getAction(T key);
 
 }

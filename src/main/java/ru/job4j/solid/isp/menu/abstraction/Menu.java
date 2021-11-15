@@ -8,27 +8,27 @@ import java.util.*;
 public class Menu<T> implements Tree<T> {
     private Node<T> parent = null;
 
-    public Menu(int key, T data, Action action) {
-        this.parent = new Node<T>(key, data, action);
+    public Menu(int number, T data, Action action) {
+        this.parent = new Node<T>(number, data, action);
     }
 
     /**
      * Добавление Node в children.
      * Каждому новому Node нужно добавить parentData родителя.
-     * @param key
+     * @param number
      * @param parentData
      * @param data
      * @param action
      * @return
      */
     @Override
-    public boolean add(int key, T parentData, T data, Action action) {
+    public boolean add(int number, T parentData, T data, Action action) {
         Optional<Node<T>> parentNode = findBy(parentData);
         Optional<Node<T>> childrenNode = findBy(data);
         if (parentNode.isEmpty() || childrenNode.isPresent()) {
             return false;
         }
-        parentNode.get().children.add(new Node<T>(key, data, action));
+        parentNode.get().children.add(new Node<T>(number, data, action));
         return true;
     }
 
@@ -61,9 +61,9 @@ public class Menu<T> implements Tree<T> {
     }
 
     @Override
-    public String getData(T key) {
+    public T getData(T key) {
         Optional<Node<T>> node = findBy(key);
-        return (String) node.map(tNode -> tNode.data).orElse(null);
+        return node.map(tNode -> tNode.data).orElse(null);
     }
 
     @Override
@@ -92,39 +92,39 @@ public class Menu<T> implements Tree<T> {
     private StringBuilder ordered(Node<T> node, int number, String prefix, StringBuilder out) {
         String prx = String.format("%s%s", prefix, number == 0 ? "" : number + ".");
         out.append(String.format("%s%s%n", (prx + " ").stripLeading(), node.data));
-        int subNumber = node.getKey();
+        int subNumber = node.getNumber();
         for (Node<T> c : node.children) {
             ordered(c, subNumber, prx, out);
-            subNumber = c.getKey();
+            subNumber = c.getNumber();
         }
         return out;
     }
 
     class Node<T> {
-        private int key;
+        private int number;
         private T data = null;
         private Action action = null;
         private List<Node<T>> children = new ArrayList<>();
 
-        public Node(int key, T data) {
-            this.key = key;
+        public Node(int number, T data) {
+            this.number = number;
             this.data = data;
         }
 
-        public Node(int key, T data, Action action) {
-            this.key = key;
+        public Node(int number, T data, Action action) {
+            this.number = number;
             this.data = data;
             this.action = action;
         }
 
-        public int getKey() {
-            return key;
+        public int getNumber() {
+            return number;
         }
 
         @Override
         public String toString() {
             return "Node{"
-                    + "key=" + key
+                    + "number=" + number
                     + ", data=" + data
                     + ", children=" + children
                     + '}';
