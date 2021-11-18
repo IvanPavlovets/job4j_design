@@ -10,10 +10,6 @@ public class Cell {
      */
     int value = 0;
 
-    public int getB() {
-        return b;
-    }
-
     /**
      * Метод устанавливает значение в игровой ячейке.
      * @param value
