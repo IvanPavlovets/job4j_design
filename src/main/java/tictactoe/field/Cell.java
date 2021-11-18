@@ -9,7 +9,6 @@ public class Cell {
      * 0 - пусто, 1 - крестик, 2 - нолик.
      */
     int value = 0;
-    int b;  // Ссылка на кнопку привязанную к ячейке. консольный ввод
 
     public int getB() {
         return b;
